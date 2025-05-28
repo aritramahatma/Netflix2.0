@@ -43,7 +43,7 @@ export const formatRating = (rating: number): string => {
 };
 
 export const getTelegramBotUrl = (movieTitle: string, movieYear: string): string => {
-  const botUsername = process.env.VITE_TELEGRAM_BOT_USERNAME || 'movie404bot';
+  const botUsername = import.meta.env.VITE_TELEGRAM_BOT_USERNAME || 'movie404bot';
   const query = encodeURIComponent(`${movieTitle} ${movieYear}`);
   return `https://t.me/${botUsername}?start=${query}`;
 };

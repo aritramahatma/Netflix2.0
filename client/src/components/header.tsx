@@ -42,15 +42,16 @@ export function Header({ onSearchClick, onMobileSearchClick, onMenuClick, isSear
 
         {/* Desktop Search Bar */}
         <div className="hidden md:flex flex-1 max-w-md mx-8">
-          <div className="relative w-full">
+          <div className="relative w-full group">
             <Input
               type="text"
-              placeholder="Search movies..."
+              placeholder="Search for movies, shows, and more..."
               onClick={onSearchClick}
-              className="w-full bg-muted border-border pl-10 focus:border-netflix-red cursor-pointer"
+              className="w-full bg-gradient-to-r from-muted to-muted/80 border-2 border-transparent hover:border-netflix-red/50 focus:border-netflix-red pl-12 pr-4 py-3 rounded-full cursor-pointer transition-all duration-300 shadow-lg hover:shadow-xl backdrop-blur-sm"
               readOnly
             />
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
+            <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-muted-foreground group-hover:text-netflix-red w-5 h-5 transition-colors duration-300" />
+            <div className="absolute inset-0 rounded-full bg-gradient-to-r from-netflix-red/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
           </div>
         </div>
 

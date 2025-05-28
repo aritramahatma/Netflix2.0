@@ -10,6 +10,7 @@ import { initializeTMDBConfig } from "@/lib/tmdb";
 import { Header } from "@/components/header";
 import { HeroSection } from "@/components/hero-section";
 import { MovieSection } from "@/components/movie-section";
+import { InfiniteMovieSection } from "@/components/infinite-movie-section";
 import { SearchOverlay, MobileSearchOverlay } from "@/components/search-overlay";
 import { SideMenu } from "@/components/side-menu";
 import { MovieDetailModal } from "@/components/movie-detail-modal";
@@ -64,8 +65,48 @@ export default function Home() {
   };
 
   const handleNavigation = (section: string) => {
+    // Close menu first
+    setIsMenuOpen(false);
+    
     // Handle navigation to different sections
-    console.log('Navigate to:', section);
+    switch (section) {
+      case 'home':
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        break;
+      case 'trending':
+        scrollToSection('trending-section');
+        break;
+      case 'movies':
+      case 'genres':
+        scrollToSection('popular-section');
+        break;
+      case 'watchlist':
+        // TODO: Implement watchlist functionality
+        console.log('Watchlist functionality coming soon!');
+        break;
+      case 'settings':
+        // TODO: Implement settings
+        console.log('Settings functionality coming soon!');
+        break;
+      case 'help':
+        // TODO: Implement help
+        console.log('Help functionality coming soon!');
+        break;
+      default:
+        console.log('Navigate to:', section);
+    }
+  };
+
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      const headerHeight = 80; // Account for fixed header
+      const elementPosition = element.offsetTop - headerHeight;
+      window.scrollTo({
+        top: elementPosition,
+        behavior: 'smooth'
+      });
+    }
   };
 
   const scrollToTop = () => {
@@ -96,14 +137,16 @@ export default function Home() {
         {/* Movie Sections */}
         <section className="py-12 space-y-12">
           {/* Trending Movies */}
-          <MovieSection
-            title="Trending Now"
-            icon={<TrendingUp className="w-6 h-6 text-netflix-red mr-3" />}
-            movies={trendingData?.results || []}
-            onMovieClick={handleMovieClick}
-            loading={trendingLoading}
-            layout="horizontal"
-          />
+          <div id="trending-section">
+            <MovieSection
+              title="Trending Now"
+              icon={<TrendingUp className="w-6 h-6 text-netflix-red mr-3" />}
+              movies={trendingData?.results || []}
+              onMovieClick={handleMovieClick}
+              loading={trendingLoading}
+              layout="horizontal"
+            />
+          </div>
 
           {/* Now Playing Movies */}
           <MovieSection
@@ -115,18 +158,6 @@ export default function Home() {
             layout="horizontal"
           />
 
-          {/* Popular Movies Grid */}
-          <MovieSection
-            title="Popular Movies"
-            icon={<Star className="w-6 h-6 text-netflix-red mr-3" />}
-            movies={allPopularMovies}
-            onMovieClick={handleMovieClick}
-            layout="grid"
-            onLoadMore={handleLoadMorePopular}
-            hasNextPage={hasNextPopular}
-            isLoadingMore={isFetchingNextPopular}
-          />
-
           {/* Top Rated Movies */}
           <MovieSection
             title="Top Rated"
@@ -136,6 +167,19 @@ export default function Home() {
             loading={topRatedLoading}
             layout="horizontal"
           />
+
+          {/* Popular Movies Grid with Infinite Scroll */}
+          <div id="popular-section">
+            <InfiniteMovieSection
+              title="Popular Movies"
+              icon={<Star className="w-6 h-6 text-netflix-red mr-3" />}
+              movies={allPopularMovies}
+              onMovieClick={handleMovieClick}
+              onLoadMore={handleLoadMorePopular}
+              hasNextPage={hasNextPopular}
+              isLoadingMore={isFetchingNextPopular}
+            />
+          </div>
         </section>
       </main>
 
