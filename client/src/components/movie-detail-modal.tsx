@@ -55,14 +55,14 @@ export function MovieDetailModal({ movieId, isOpen, onClose, onMovieClick }: Mov
                 <img
                   src={getMovieBackdropUrl(movie.backdrop_path)}
                   alt={movie.title}
-                  className="w-full h-64 object-cover"
+                  className="w-full h-64 object-cover -z-10"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent"></div>
                 <Button
                   variant="ghost"
                   size="icon"
                   onClick={onClose}
-                  className="absolute top-2 right-2 sm:top-4 sm:right-4 text-white bg-black/50 hover:bg-black/70 rounded-full w-8 h-8 sm:w-10 sm:h-10"
+                  className="absolute top-2 right-2 sm:top-4 sm:right-4 text-white bg-black/50 hover:bg-black/70 rounded-full w-8 h-8 sm:w-10 sm:h-10 z-10"
                 >
                   <X className="w-4 h-4 sm:w-5 sm:h-5" />
                 </Button>
@@ -147,7 +147,7 @@ export function MovieDetailModal({ movieId, isOpen, onClose, onMovieClick }: Mov
                       {movie.credits && movie.credits.cast.length > 0 && (
                         <div className="mb-6">
                           <h3 className="text-lg sm:text-xl font-semibold mb-3">Cast</h3>
-                          <div className="flex space-x-3 sm:space-x-4 overflow-x-auto horizontal-scroll">
+                          <div className="flex space-x-3 sm:space-x-4 overflow-x-auto pb-2 cast-scroll">
                             {movie.credits.cast.slice(0, 10).map((actor: TMDBCastMember) => (
                               <div key={actor.id} className="flex-none text-center min-w-[60px] sm:min-w-[80px]">
                                 <img
