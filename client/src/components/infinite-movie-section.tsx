@@ -1,4 +1,4 @@
-import { useEffect, useRef, useMemo } from "react";
+import { useEffect, useRef } from "react";
 import { TMDBMovie } from "@/types/movie";
 import { MovieCard } from "./movie-card";
 import { LoadingIndicator, MovieGridSkeleton } from "./loading-indicator";
@@ -23,21 +23,6 @@ export function InfiniteMovieSection({
   isLoadingMore
 }: InfiniteMovieSectionProps) {
   const loadMoreRef = useRef<HTMLDivElement>(null);
-
-  // Create unique movies list to prevent duplicates
-  const uniqueMovies = useMemo(() => {
-    const seen = new Set<number>();
-    const unique: { movie: TMDBMovie; originalIndex: number }[] = [];
-    
-    movies.forEach((movie, index) => {
-      if (!seen.has(movie.id)) {
-        seen.add(movie.id);
-        unique.push({ movie, originalIndex: index });
-      }
-    });
-    
-    return unique;
-  }, [movies]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -64,7 +49,7 @@ export function InfiniteMovieSection({
     };
   }, [hasNextPage, isLoadingMore, onLoadMore]);
 
-  if (uniqueMovies.length === 0) {
+  if (movies.length === 0) {
     return (
       <div className="container mx-auto px-4">
         <h2 className="text-2xl font-semibold mb-6 flex items-center">
@@ -82,11 +67,11 @@ export function InfiniteMovieSection({
         {icon}
         {title}
       </h2>
-
+      
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3 md:gap-4">
-        {uniqueMovies.map(({ movie, originalIndex }, displayIndex) => (
+        {movies.map((movie) => (
           <MovieCard
-            key={`${title.replace(/\s+/g, '-').toLowerCase()}-${movie.id}-unique`}
+            key={movie.id}
             movie={movie}
             onClick={() => onMovieClick(movie)}
           />
@@ -102,4 +87,3 @@ export function InfiniteMovieSection({
     </div>
   );
 }
-```
