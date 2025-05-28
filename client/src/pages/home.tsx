@@ -36,7 +36,7 @@ export default function Home() {
   } = usePopularMovies();
   const { data: nowPlayingData, isLoading: nowPlayingLoading } = useNowPlayingMovies();
   const { data: topRatedData, isLoading: topRatedLoading } = useTopRatedMovies();
-  
+
   // Genre movies data
   const { 
     data: genreMoviesData, 
@@ -62,10 +62,11 @@ export default function Home() {
 
   // Get featured movie (first trending movie)
   const featuredMovie = trendingData?.results[0] || null;
+  const allTrendingMovies = trendingData?.results || [];
 
   // Get all popular movies from all pages
   const allPopularMovies = popularData?.pages.flatMap(page => page.results) || [];
-  
+
   // Get all genre movies from all pages
   const allGenreMovies = genreMoviesData?.pages.flatMap(page => page.results) || [];
 
@@ -80,7 +81,7 @@ export default function Home() {
   const handleNavigation = (section: string, genreId?: number) => {
     // Close menu first
     setIsMenuOpen(false);
-    
+
     // Handle navigation to different sections
     switch (section) {
       case 'home':
@@ -157,7 +158,17 @@ export default function Home() {
       {/* Main Content */}
       <main className="pt-20">
         {/* Hero Section */}
-        <HeroSection movie={featuredMovie} />
+        <HeroSection
+          movies={allTrendingMovies.slice(0, 5)} // Use first 5 trending movies for rotation
+          onWatchNow={() => {
+            const currentMovie = allTrendingMovies[0]; // Always use first movie for watch now
+            if (currentMovie) handleMovieClick(currentMovie);
+          }}
+          onAddToList={() => {
+            // Add to list functionality
+            console.log('Add to list clicked');
+          }}
+        />
 
         {/* Movie Sections */}
         <section className="py-12 space-y-12">
