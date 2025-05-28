@@ -71,7 +71,7 @@ export function InfiniteMovieSection({
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3 md:gap-4">
         {movies.map((movie, index) => (
           <MovieCard
-            key={`grid-${movie.id}-${Math.floor(index / 20)}-${index}`}
+            key={`${title}-${movie.id}-${index}`}
             movie={movie}
             onClick={() => onMovieClick(movie)}
           />
