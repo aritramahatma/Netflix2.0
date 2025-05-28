@@ -149,14 +149,16 @@ export function MovieDetailModal({ movieId, isOpen, onClose, onMovieClick }: Mov
                           <h3 className="text-lg sm:text-xl font-semibold mb-3">Cast</h3>
                           <div className="flex space-x-3 sm:space-x-4 overflow-x-auto pb-2 cast-scroll">
                             {movie.credits.cast.slice(0, 10).map((actor: TMDBCastMember) => (
-                              <div key={actor.id} className="flex-none text-center min-w-[60px] sm:min-w-[80px]">
-                                <img
-                                  src={getActorProfileUrl(actor.profile_path)}
-                                  alt={actor.name}
-                                  className="w-12 h-12 sm:w-16 sm:h-16 rounded-full object-cover mb-2"
-                                />
-                                <p className="text-xs sm:text-sm font-medium line-clamp-2">{actor.name}</p>
-                                <p className="text-xs text-muted-foreground line-clamp-1">{actor.character}</p>
+                              <div key={actor.id} className="flex-none text-center min-w-[80px] sm:min-w-[100px]">
+                                <div className="flex flex-col items-center">
+                                  <img
+                                    src={getActorProfileUrl(actor.profile_path)}
+                                    alt={actor.name}
+                                    className="w-16 h-16 sm:w-20 sm:h-20 rounded-full object-cover mb-2 mx-auto"
+                                  />
+                                  <p className="text-xs sm:text-sm font-medium line-clamp-2 text-center">{actor.name}</p>
+                                  <p className="text-xs text-muted-foreground line-clamp-1 text-center">{actor.character}</p>
+                                </div>
                               </div>
                             ))}
                           </div>
