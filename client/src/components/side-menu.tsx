@@ -1,17 +1,21 @@
-import { Home, Film, TrendingUp, Tags, Bookmark, Settings, HelpCircle } from "lucide-react";
+import { useState } from "react";
+import { Home, Film, TrendingUp, Tags, Bookmark, Settings, HelpCircle, ChevronDown, ChevronRight } from "lucide-react";
+import { useGenres } from "@/hooks/use-tmdb";
 
 interface SideMenuProps {
   isOpen: boolean;
   onClose: () => void;
-  onNavigate: (section: string) => void;
+  onNavigate: (section: string, genreId?: number) => void;
 }
 
 export function SideMenu({ isOpen, onClose, onNavigate }: SideMenuProps) {
+  const [isGenresOpen, setIsGenresOpen] = useState(false);
+  const { data: genresData } = useGenres();
+  
   const menuItems = [
     { icon: Home, label: "Home", key: "home" },
     { icon: Film, label: "Movies", key: "movies" },
     { icon: TrendingUp, label: "Trending", key: "trending" },
-    { icon: Tags, label: "Genres", key: "genres" },
     { icon: Bookmark, label: "My List", key: "watchlist" },
   ];
 
@@ -22,6 +26,11 @@ export function SideMenu({ isOpen, onClose, onNavigate }: SideMenuProps) {
 
   const handleItemClick = (key: string) => {
     onNavigate(key);
+    onClose();
+  };
+
+  const handleGenreClick = (genreId: number, genreName: string) => {
+    onNavigate("genre", genreId);
     onClose();
   };
 
@@ -53,6 +62,38 @@ export function SideMenu({ isOpen, onClose, onNavigate }: SideMenuProps) {
                 {item.label}
               </button>
             ))}
+            
+            {/* Genres Dropdown */}
+            <div>
+              <button
+                onClick={() => setIsGenresOpen(!isGenresOpen)}
+                className="w-full flex items-center justify-between text-left text-foreground hover:text-netflix-red transition-colors py-2 text-lg"
+              >
+                <div className="flex items-center">
+                  <Tags className="w-5 h-5 mr-3" />
+                  Genres
+                </div>
+                {isGenresOpen ? (
+                  <ChevronDown className="w-4 h-4" />
+                ) : (
+                  <ChevronRight className="w-4 h-4" />
+                )}
+              </button>
+              
+              {isGenresOpen && genresData?.genres && (
+                <div className="mt-2 ml-8 space-y-2 max-h-60 overflow-y-auto">
+                  {genresData.genres.map((genre) => (
+                    <button
+                      key={genre.id}
+                      onClick={() => handleGenreClick(genre.id, genre.name)}
+                      className="w-full text-left text-muted-foreground hover:text-netflix-red transition-colors py-1 text-base"
+                    >
+                      {genre.name}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
             
             <hr className="border-border my-4" />
             

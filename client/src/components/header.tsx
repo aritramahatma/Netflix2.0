@@ -55,29 +55,30 @@ export function Header({ onSearchClick, onMobileSearchClick, onMenuClick, isSear
           </div>
         </div>
 
-        {/* Mobile Search Icon */}
-        <Button
-          variant="ghost"
-          size="icon"
-          className={`md:hidden transition-opacity duration-300 hover:bg-netflix-red/20 active:bg-netflix-red/30 ${
-            isSearchOpen ? 'opacity-0' : 'opacity-100'
-          }`}
-          onClick={onMobileSearchClick}
-        >
-          <Search className="w-6 h-6" />
-        </Button>
+        {/* Right side buttons */}
+        <div className="flex items-center space-x-2">
+          {/* Mobile Search Icon */}
+          <Button
+            variant="ghost"
+            className={`md:hidden p-3 transition-opacity duration-300 hover:bg-netflix-red/20 active:bg-netflix-red/30 ${
+              isSearchOpen ? 'opacity-0' : 'opacity-100'
+            }`}
+            onClick={onMobileSearchClick}
+          >
+            <Search className="w-7 h-7" />
+          </Button>
 
-        {/* Menu Button */}
-        <Button
-          variant="ghost"
-          size="icon"
-          className={`transition-opacity duration-300 hover:bg-netflix-red/20 active:bg-netflix-red/30 ${
-            isSearchOpen ? 'opacity-0 md:opacity-100' : 'opacity-100'
-          }`}
-          onClick={onMenuClick}
-        >
-          <Menu className="w-6 h-6" />
-        </Button>
+          {/* Menu Button */}
+          <Button
+            variant="ghost"
+            className={`p-3 transition-opacity duration-300 hover:bg-netflix-red/20 active:bg-netflix-red/30 ${
+              isSearchOpen ? 'opacity-0 md:opacity-100' : 'opacity-100'
+            }`}
+            onClick={onMenuClick}
+          >
+            <Menu className="w-7 h-7" />
+          </Button>
+        </div>
       </div>
     </header>
   );

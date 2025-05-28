@@ -4,7 +4,8 @@ import {
   useTrendingMovies, 
   usePopularMovies,
   useNowPlayingMovies,
-  useTopRatedMovies 
+  useTopRatedMovies,
+  useMoviesByGenre 
 } from "@/hooks/use-tmdb";
 import { initializeTMDBConfig } from "@/lib/tmdb";
 import { Header } from "@/components/header";
@@ -15,7 +16,7 @@ import { SearchOverlay, MobileSearchOverlay } from "@/components/search-overlay"
 import { SideMenu } from "@/components/side-menu";
 import { MovieDetailModal } from "@/components/movie-detail-modal";
 import { Button } from "@/components/ui/button";
-import { ChevronUp, TrendingUp, Star, Clock, Film } from "lucide-react";
+import { ChevronUp, TrendingUp, Star, Clock, Film, Tags } from "lucide-react";
 
 export default function Home() {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -23,6 +24,7 @@ export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [selectedMovieId, setSelectedMovieId] = useState<number | null>(null);
   const [showBackToTop, setShowBackToTop] = useState(false);
+  const [selectedGenreId, setSelectedGenreId] = useState<number | null>(null);
 
   // Fetch movie data
   const { data: trendingData, isLoading: trendingLoading } = useTrendingMovies();
@@ -34,6 +36,14 @@ export default function Home() {
   } = usePopularMovies();
   const { data: nowPlayingData, isLoading: nowPlayingLoading } = useNowPlayingMovies();
   const { data: topRatedData, isLoading: topRatedLoading } = useTopRatedMovies();
+  
+  // Genre movies data
+  const { 
+    data: genreMoviesData, 
+    fetchNextPage: fetchNextGenreMovies,
+    hasNextPage: hasNextGenrePage,
+    isFetchingNextPage: isFetchingNextGenrePage
+  } = useMoviesByGenre(selectedGenreId);
 
   // Initialize TMDB configuration
   useEffect(() => {
@@ -55,6 +65,9 @@ export default function Home() {
 
   // Get all popular movies from all pages
   const allPopularMovies = popularData?.pages.flatMap(page => page.results) || [];
+  
+  // Get all genre movies from all pages
+  const allGenreMovies = genreMoviesData?.pages.flatMap(page => page.results) || [];
 
   const handleMovieClick = (movie: TMDBMovie) => {
     setSelectedMovieId(movie.id);
@@ -64,32 +77,40 @@ export default function Home() {
     setSelectedMovieId(null);
   };
 
-  const handleNavigation = (section: string) => {
+  const handleNavigation = (section: string, genreId?: number) => {
     // Close menu first
     setIsMenuOpen(false);
     
     // Handle navigation to different sections
     switch (section) {
       case 'home':
+        setSelectedGenreId(null);
         window.scrollTo({ top: 0, behavior: 'smooth' });
         break;
       case 'trending':
+        setSelectedGenreId(null);
         scrollToSection('trending-section');
         break;
       case 'movies':
-      case 'genres':
+        setSelectedGenreId(null);
         scrollToSection('popular-section');
         break;
+      case 'genre':
+        if (genreId) {
+          setSelectedGenreId(genreId);
+          // Scroll to genre section or create one
+          setTimeout(() => {
+            scrollToSection('genre-section');
+          }, 100);
+        }
+        break;
       case 'watchlist':
-        // TODO: Implement watchlist functionality
         console.log('Watchlist functionality coming soon!');
         break;
       case 'settings':
-        // TODO: Implement settings
         console.log('Settings functionality coming soon!');
         break;
       case 'help':
-        // TODO: Implement help
         console.log('Help functionality coming soon!');
         break;
       default:
