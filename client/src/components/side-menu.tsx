@@ -30,7 +30,7 @@ export function SideMenu({ isOpen, onClose, onNavigate }: SideMenuProps) {
   };
 
   const handleGenreClick = (genreId: number, genreName: string) => {
-    onNavigate("genre", genreId);
+    window.location.href = `/genre/${genreId}`;
     onClose();
   };
 

@@ -12,7 +12,7 @@ interface HeroSectionProps {
 export function HeroSection({ movie, onWatchNow, onAddToList }: HeroSectionProps) {
   if (!movie) {
     return (
-      <section className="relative h-screen">
+      <section className="relative h-[70vh] md:h-[80vh]">
         <div className="absolute inset-0 bg-gradient-to-r from-background/80 via-background/40 to-transparent z-10"></div>
         <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent z-10"></div>
         
@@ -46,7 +46,7 @@ export function HeroSection({ movie, onWatchNow, onAddToList }: HeroSectionProps
   };
 
   return (
-    <section className="relative h-screen">
+    <section className="relative h-[70vh] md:h-[80vh]">
       {/* Background gradients */}
       <div className="absolute inset-0 bg-gradient-to-r from-background/80 via-background/40 to-transparent z-10"></div>
       <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent z-10"></div>

@@ -105,15 +105,19 @@ export default function Home() {
         }
         break;
       case 'watchlist':
+        setSelectedGenreId(null);
         console.log('Watchlist functionality coming soon!');
         break;
       case 'settings':
+        setSelectedGenreId(null);
         console.log('Settings functionality coming soon!');
         break;
       case 'help':
+        setSelectedGenreId(null);
         console.log('Help functionality coming soon!');
         break;
       default:
+        setSelectedGenreId(null);
         console.log('Navigate to:', section);
     }
   };
