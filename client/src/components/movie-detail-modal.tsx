@@ -52,12 +52,14 @@ export function MovieDetailModal({ movieId, isOpen, onClose, onMovieClick }: Mov
             <>
               {/* Modal Header */}
               <div className="relative">
-                <img
-                  src={getMovieBackdropUrl(movie.backdrop_path)}
-                  alt={movie.title}
-                  className="w-full h-64 object-cover -z-10"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent"></div>
+                <div className="relative">
+                  <img
+                    src={getMovieBackdropUrl(movie.backdrop_path)}
+                    alt={movie.title}
+                    className="w-full h-64 object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent"></div>
+                </div>
                 <Button
                   variant="ghost"
                   size="icon"
