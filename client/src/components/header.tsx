@@ -76,7 +76,7 @@ export function Header({ onSearchClick, onMobileSearchClick, onMenuClick, isSear
             }`}
             onClick={onMenuClick}
           >
-            <Menu className="w-7 h-7" />
+            <Menu className="w-8 h-8" />
           </Button>
         </div>
       </div>
