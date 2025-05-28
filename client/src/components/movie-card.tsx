@@ -28,7 +28,7 @@ export function MovieCard({ movie, onClick, className = "" }: MovieCardProps) {
             <div className="bg-netflix-red hover:bg-red-700 active:bg-red-800 rounded-full p-4 mb-3 mx-auto inline-flex items-center justify-center shadow-xl transform hover:scale-110 active:scale-95 transition-all duration-200 cursor-pointer">
               <Play className="w-8 h-8 text-white fill-white" />
             </div>
-            <p className="text-white font-semibold text-base tracking-wide drop-shadow-lg">WATCH NOW</p>
+            <p className="text-white font-semibold text-xs tracking-wide drop-shadow-lg">WATCH NOW</p>
           </div>
         </div>
         
@@ -83,7 +83,7 @@ export function HorizontalMovieCard({ movie, onClick }: HorizontalMovieCardProps
             <div className="bg-netflix-red hover:bg-red-700 rounded-full p-4 mb-3 mx-auto inline-flex items-center justify-center shadow-lg transform hover:scale-110 transition-all duration-200 cursor-pointer">
               <Play className="w-8 h-8 text-white fill-white" />
             </div>
-            <p className="text-white font-semibold text-base tracking-wide">WATCH NOW</p>
+            <p className="text-white font-semibold text-xs tracking-wide">WATCH NOW</p>
           </div>
         </div>
         
