@@ -59,24 +59,24 @@ export function Header({ onSearchClick, onMobileSearchClick, onMenuClick, isSear
         <Button
           variant="ghost"
           size="icon"
-          className={`md:hidden transition-opacity duration-300 ${
+          className={`md:hidden transition-opacity duration-300 hover:bg-netflix-red/20 active:bg-netflix-red/30 ${
             isSearchOpen ? 'opacity-0' : 'opacity-100'
           }`}
           onClick={onMobileSearchClick}
         >
-          <Search className="w-5 h-5" />
+          <Search className="w-6 h-6" />
         </Button>
 
         {/* Menu Button */}
         <Button
           variant="ghost"
           size="icon"
-          className={`transition-opacity duration-300 ${
+          className={`transition-opacity duration-300 hover:bg-netflix-red/20 active:bg-netflix-red/30 ${
             isSearchOpen ? 'opacity-0 md:opacity-100' : 'opacity-100'
           }`}
           onClick={onMenuClick}
         >
-          <Menu className="w-5 h-5" />
+          <Menu className="w-6 h-6" />
         </Button>
       </div>
     </header>

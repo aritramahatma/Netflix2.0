@@ -186,21 +186,21 @@ export function MobileSearchOverlay({ isOpen, onClose, onMovieClick }: MobileSea
   if (!isOpen) return null;
 
   return (
-    <div className="md:hidden fixed inset-0 bg-black/80 backdrop-blur-sm z-60">
+    <div className="md:hidden fixed inset-0 bg-black/90 backdrop-blur-sm z-60">
       <div className="p-4 pt-20">
         <div className="relative">
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" />
+          <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-muted-foreground w-5 h-5" />
           <Input
             type="text"
-            placeholder="Search movies..."
+            placeholder="Search for movies..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="pl-10 pr-12 py-3 text-lg bg-muted border-border focus:border-netflix-red"
+            className="pl-12 pr-14 py-4 text-lg bg-gradient-to-r from-muted to-muted/80 border-2 border-transparent focus:border-netflix-red rounded-full shadow-lg"
             autoFocus
           />
           <button
             onClick={handleClose}
-            className="absolute right-3 top-1/2 transform -translate-y-1/2 text-muted-foreground"
+            className="absolute right-4 top-1/2 transform -translate-y-1/2 text-muted-foreground hover:text-netflix-red active:text-netflix-red transition-colors p-1"
           >
             <X className="w-5 h-5" />
           </button>
@@ -218,21 +218,29 @@ export function MobileSearchOverlay({ isOpen, onClose, onMovieClick }: MobileSea
                 <div
                   key={movie.id}
                   onClick={() => handleMovieClick(movie)}
-                  className="flex items-center space-x-3 p-3 bg-muted rounded-md cursor-pointer hover:bg-muted/80"
+                  className="flex items-center space-x-4 p-4 bg-muted/80 rounded-xl cursor-pointer hover:bg-muted active:bg-muted/60 transition-all duration-200 backdrop-blur-sm border border-border/50"
                 >
                   <img
                     src={`https://image.tmdb.org/t/p/w92${movie.poster_path}`}
                     alt={movie.title}
-                    className="w-12 h-18 object-cover rounded"
+                    className="w-14 h-20 object-cover rounded-lg shadow-md"
                     onError={(e) => {
-                      e.currentTarget.src = 'https://via.placeholder.com/48x72/1f1f1f/888888?text=No+Image';
+                      e.currentTarget.src = 'https://via.placeholder.com/56x80/1f1f1f/888888?text=No+Image';
                     }}
                   />
-                  <div>
-                    <h4 className="font-medium">{movie.title}</h4>
+                  <div className="flex-1 min-w-0">
+                    <h4 className="font-semibold text-white line-clamp-2 mb-1">{movie.title}</h4>
                     <p className="text-muted-foreground text-sm">
                       {movie.release_date ? new Date(movie.release_date).getFullYear() : 'Unknown'}
                     </p>
+                    {movie.vote_average > 0 && (
+                      <div className="flex items-center mt-1">
+                        <span className="text-yellow-400 text-sm">★</span>
+                        <span className="text-muted-foreground text-sm ml-1">
+                          {movie.vote_average.toFixed(1)}
+                        </span>
+                      </div>
+                    )}
                   </div>
                 </div>
               ))
