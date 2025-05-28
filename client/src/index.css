@@ -103,7 +103,7 @@
 @keyframes fadeIn {
   from { 
     opacity: 0; 
-    transform: translateY(20px); 
+    transform: translateY(10px); 
   }
   to { 
     opacity: 1; 
@@ -125,29 +125,70 @@
     opacity: 1;
   }
   50% {
-    opacity: 0.5;
+    opacity: 0.6;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
 .animate-fadeIn {
-  animation: fadeIn 0.3s ease-in-out;
+  animation: fadeIn 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .animate-slideIn {
-  animation: slideIn 0.3s ease-in-out;
+  animation: slideIn 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.animate-scaleIn {
+  animation: scaleIn 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.animate-slideUp {
+  animation: slideUp 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .animate-pulse-slow {
-  animation: pulse-slow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  animation: pulse-slow 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
 /* Backdrop blur effect */
 .backdrop-blur-sm {
   backdrop-filter: blur(4px);
+  transition: backdrop-filter 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .backdrop-blur {
   backdrop-filter: blur(8px);
+  transition: backdrop-filter 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Modal and overlay transitions */
+.modal-overlay {
+  transition: opacity 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.modal-content {
+  transition: all 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 /* Netflix red color utilities */
@@ -185,12 +226,14 @@
 
 /* Movie card hover effects */
 .movie-card {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transform: scale(1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .movie-card:hover {
-  transform: scale(1.05);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  transform: scale(1.03);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
 }
 
 /* Loading animation */
@@ -211,17 +254,74 @@
 .loading-dots div:nth-child(2) { animation-delay: -0.16s; }
 .loading-dots div:nth-child(3) { animation-delay: 0; }
 
+/* Transition utility classes */
+.transition-fast {
+  transition: all 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.transition-smooth {
+  transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.transition-smooth-slow {
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.hover-lift:hover {
+  transform: translateY(-2px);
+}
+
+.hover-scale:hover {
+  transform: scale(1.02);
+}
+
+.hover-glow:hover {
+  box-shadow: 0 0 20px rgba(229, 9, 20, 0.3);
+}
+
 /* Mobile optimizations */
 @media (max-width: 768px) {
   .movie-card:hover {
+    transform: scale(1.01);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+  }
+  
+  button:hover, a:hover, [role="button"]:hover {
     transform: none;
-    box-shadow: none;
   }
 }
 
 /* Smooth transitions for all interactive elements */
-button, a, [role="button"] {
-  transition: all 0.2s ease-in-out;
+button, a, [role="button"], img, .transition, .group > * {
+  transition: all 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Enhanced interactive states */
+button:hover, a:hover, [role="button"]:hover {
+  transform: translateY(-1px);
+}
+
+button:active, a:active, [role="button"]:active {
+  transform: translateY(0);
+  transition-duration: 0.1s;
+}
+
+/* Image transitions */
+img {
+  transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Group hover effects */
+.group:hover img {
+  transform: scale(1.05);
+}
+
+.group:hover .group-hover\:scale-105 {
+  transform: scale(1.05);
+}
+
+.group:hover .group-hover\:text-netflix-red {
+  color: hsl(var(--primary));
 }
 
 /* Custom scrollbar for cast section */

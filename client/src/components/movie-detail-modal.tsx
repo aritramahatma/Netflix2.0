@@ -41,9 +41,9 @@ export function MovieDetailModal({ movieId, isOpen, onClose, onMovieClick }: Mov
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black/90 z-50 overflow-y-auto">
+    <div className="fixed inset-0 bg-black/90 z-50 overflow-y-auto modal-overlay animate-fadeIn">
       <div className="min-h-screen flex items-center justify-center p-2 sm:p-4">
-        <div className="bg-card rounded-lg max-w-4xl w-full max-h-[95vh] sm:max-h-[90vh] overflow-hidden">
+        <div className="bg-card rounded-lg max-w-4xl w-full max-h-[95vh] sm:max-h-[90vh] overflow-hidden modal-content animate-scaleIn">
           {isMovieLoading || !movie ? (
             <div className="h-96 flex items-center justify-center">
               <LoadingIndicator text="Loading movie details..." />
@@ -131,13 +131,13 @@ export function MovieDetailModal({ movieId, isOpen, onClose, onMovieClick }: Mov
                       {/* Action Buttons */}
                       <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-6">
                         <Button 
-                          className="bg-netflix-red hover:bg-red-700 font-semibold text-sm sm:text-base"
+                          className="bg-netflix-red hover:bg-red-700 font-semibold text-sm sm:text-base transition-fast hover-lift hover-glow"
                           onClick={handleWatchOnTelegram}
                         >
                           <Play className="w-4 h-4 mr-2" />
                           Watch on Telegram
                         </Button>
-                        <Button variant="secondary" className="font-semibold text-sm sm:text-base">
+                        <Button variant="secondary" className="font-semibold text-sm sm:text-base transition-fast hover-lift">
                           <Plus className="w-4 h-4 mr-2" />
                           Add to List
                         </Button>
@@ -173,15 +173,15 @@ export function MovieDetailModal({ movieId, isOpen, onClose, onMovieClick }: Mov
                             {similarMovies.results.slice(0, 6).map((similarMovie) => (
                               <div
                                 key={similarMovie.id}
-                                className="group cursor-pointer"
+                                className="group cursor-pointer transition-smooth hover-lift"
                                 onClick={() => handleSimilarMovieClick(similarMovie)}
                               >
                                 <img
                                   src={getMoviePosterUrl(similarMovie.poster_path)}
                                   alt={similarMovie.title}
-                                  className="w-full h-24 sm:h-32 object-cover rounded group-hover:scale-105 transition-transform"
+                                  className="w-full h-24 sm:h-32 object-cover rounded group-hover:scale-105 transition-fast"
                                 />
-                                <p className="text-xs sm:text-sm mt-1 group-hover:text-netflix-red transition-colors line-clamp-2">
+                                <p className="text-xs sm:text-sm mt-1 group-hover:text-netflix-red transition-fast line-clamp-2">
                                   {similarMovie.title}
                                 </p>
                               </div>
