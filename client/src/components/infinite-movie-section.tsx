@@ -51,6 +51,9 @@ export function InfiniteMovieSection({
     };
   }, [hasNextPage, isLoadingMore, onLoadMore]);
 
+  const isMobile = useIsMobile();
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+
   if (movies.length === 0) {
     return (
       <div className="container mx-auto px-4">
@@ -62,9 +65,6 @@ export function InfiniteMovieSection({
       </div>
     );
   }
-
-  const isMobile = useIsMobile();
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   const scroll = (direction: 'left' | 'right') => {
     if (scrollContainerRef.current) {
@@ -112,7 +112,7 @@ export function InfiniteMovieSection({
           >
             {movies.map((movie, index) => (
               <HorizontalMovieCard
-                key={`${movie.id}-${index}`}
+                key={`horizontal-${movie.id}-${index}`}
                 movie={movie}
                 onClick={() => onMovieClick(movie)}
               />
@@ -130,7 +130,7 @@ export function InfiniteMovieSection({
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3 md:gap-4">
             {movies.map((movie, index) => (
               <MovieCard
-                key={`${movie.id}-${index}`}
+                key={`grid-${movie.id}-${index}`}
                 movie={movie}
                 onClick={() => onMovieClick(movie)}
               />
