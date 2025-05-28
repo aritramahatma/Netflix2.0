@@ -66,14 +66,14 @@ interface HorizontalMovieCardProps {
 export function HorizontalMovieCard({ movie, onClick }: HorizontalMovieCardProps) {
   return (
     <div 
-      className="flex-none w-40 md:w-48 group cursor-pointer movie-card"
+      className="flex-none w-48 group cursor-pointer movie-card"
       onClick={onClick}
     >
       <div className="relative overflow-hidden rounded-lg">
         <img
           src={getMoviePosterUrl(movie.poster_path)}
           alt={movie.title}
-          className="w-full h-60 md:h-72 object-cover"
+          className="w-full h-72 object-cover"
           loading="lazy"
         />
         
