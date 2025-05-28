@@ -140,23 +140,23 @@ export function HeroSection({ movies, movie, onWatchNow, onAddToList }: HeroSect
             </div>
             
             {/* Action buttons */}
-            <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4 animate-fadeIn">
+            <div className="flex flex-row space-x-3 sm:space-x-4 animate-fadeIn">
               <Button
                 size="lg"
-                className="bg-white text-black hover:bg-gray-200 font-semibold px-6 sm:px-8 text-sm sm:text-base"
+                className="bg-white text-black hover:bg-gray-200 font-semibold px-4 sm:px-6 md:px-8 text-sm sm:text-base flex-1 sm:flex-none"
                 onClick={handleWatchNow}
               >
-                <Play className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
+                <Play className="w-4 h-4 sm:w-5 sm:h-5 mr-1 sm:mr-2" />
                 Play
               </Button>
               
               <Button
                 size="lg"
                 variant="secondary"
-                className="bg-gray-600/80 hover:bg-gray-600 font-semibold px-6 sm:px-8 text-sm sm:text-base"
+                className="bg-gray-600/80 hover:bg-gray-600 font-semibold px-4 sm:px-6 md:px-8 text-sm sm:text-base flex-1 sm:flex-none"
                 onClick={onAddToList}
               >
-                <Plus className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
+                <Plus className="w-4 h-4 sm:w-5 sm:h-5 mr-1 sm:mr-2" />
                 My List
               </Button>
             </div>
