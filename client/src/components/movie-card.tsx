@@ -24,11 +24,11 @@ export function MovieCard({ movie, onClick, className = "" }: MovieCardProps) {
         
         {/* Touch-optimized overlay for mobile */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-0 group-hover:opacity-100 group-active:opacity-100 transition-all duration-300 flex items-center justify-center touch-manipulation">
-          <div className="text-center transform translate-y-2 md:translate-y-4 group-hover:translate-y-0 group-active:translate-y-0 transition-transform duration-300">
-            <div className="bg-netflix-red hover:bg-red-700 active:bg-red-800 rounded-full p-3 md:p-4 mb-2 md:mb-3 mx-auto inline-flex items-center justify-center shadow-xl transform hover:scale-110 active:scale-95 transition-all duration-200 cursor-pointer min-w-[48px] min-h-[48px] md:min-w-auto md:min-h-auto">
-              <Play className="w-5 h-5 md:w-8 md:h-8 text-white fill-white" />
+          <div className="text-center transform translate-y-4 group-hover:translate-y-0 group-active:translate-y-0 transition-transform duration-300">
+            <div className="bg-netflix-red hover:bg-red-700 active:bg-red-800 rounded-full p-4 mb-3 mx-auto inline-flex items-center justify-center shadow-xl transform hover:scale-110 active:scale-95 transition-all duration-200 cursor-pointer">
+              <Play className="w-8 h-8 text-white fill-white" />
             </div>
-            <p className="text-white font-semibold text-xs md:text-base tracking-wide drop-shadow-lg">WATCH NOW</p>
+            <p className="text-white font-semibold text-base tracking-wide drop-shadow-lg">WATCH NOW</p>
           </div>
         </div>
         
