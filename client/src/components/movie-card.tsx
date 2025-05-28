@@ -25,8 +25,8 @@ export function MovieCard({ movie, onClick, className = "" }: MovieCardProps) {
         {/* Touch-optimized overlay for mobile */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-0 group-hover:opacity-100 group-active:opacity-100 transition-all duration-300 flex items-center justify-center touch-manipulation">
           <div className="text-center transform translate-y-4 group-hover:translate-y-0 group-active:translate-y-0 transition-transform duration-300">
-            <div className="bg-primary hover:bg-primary/90 active:bg-primary/80 rounded-full p-3 mb-3 mx-auto inline-flex items-center justify-center shadow-xl transform hover:scale-110 active:scale-95 transition-all duration-200 cursor-pointer">
-              <Play className="w-6 h-6 text-white fill-white" />
+            <div className="bg-primary hover:bg-primary/90 active:bg-primary/80 rounded-full p-4 mb-3 mx-auto inline-flex items-center justify-center shadow-xl transform hover:scale-110 active:scale-95 transition-all duration-200 cursor-pointer">
+              <Play className="w-8 h-8 text-white fill-white" />
             </div>
             <p className="text-white font-semibold text-xs tracking-wide drop-shadow-lg">WATCH NOW</p>
           </div>
@@ -80,8 +80,8 @@ export function HorizontalMovieCard({ movie, onClick }: HorizontalMovieCardProps
         {/* Hover overlay */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center">
           <div className="text-center transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 text-[#db143c]">
-            <div className="bg-primary hover:bg-primary/90 rounded-full p-3 mb-3 mx-auto inline-flex items-center justify-center shadow-lg transform hover:scale-110 transition-all duration-200 cursor-pointer">
-              <Play className="w-6 h-6 text-white fill-white" />
+            <div className="bg-primary hover:bg-primary/90 rounded-full p-4 mb-3 mx-auto inline-flex items-center justify-center shadow-lg transform hover:scale-110 transition-all duration-200 cursor-pointer">
+              <Play className="w-8 h-8 text-white fill-white" />
             </div>
             <p className="text-white font-semibold text-xs tracking-wide">WATCH NOW</p>
           </div>
