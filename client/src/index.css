@@ -14,7 +14,7 @@
   --card-foreground: 0 0% 98%; /* #FAFAFA */
   --border: 215 25% 20%; /* #333333 */
   --input: 215 25% 20%; /* #333333 */
-  --primary: 348 83% 47%; /* #E50914 */
+  --primary: 348 100% 50%; /* hsl(348deg 100% 50%) */
   --primary-foreground: 0 0% 98%; /* #FAFAFA */
   --secondary: 215 25% 20%; /* #333333 */
   --secondary-foreground: 0 0% 98%; /* #FAFAFA */
@@ -27,7 +27,7 @@
 
   --sidebar-background: 210 10% 7%; /* #121212 */
   --sidebar-foreground: 0 0% 98%; /* #FAFAFA */
-  --sidebar-primary: 348 83% 47%; /* #E50914 */
+  --sidebar-primary: 348 100% 50%; /* hsl(348deg 100% 50%) */
   --sidebar-primary-foreground: 0 0% 98%; /* #FAFAFA */
   --sidebar-accent: 215 25% 20%; /* #333333 */
   --sidebar-accent-foreground: 0 0% 98%; /* #FAFAFA */
@@ -46,7 +46,7 @@
   --card-foreground: 0 0% 98%; /* #FAFAFA */
   --border: 215 25% 20%; /* #333333 */
   --input: 215 25% 20%; /* #333333 */
-  --primary: 348 83% 47%; /* #E50914 */
+  --primary: 348 100% 50%; /* hsl(348deg 100% 50%) */
   --primary-foreground: 0 0% 98%; /* #FAFAFA */
   --secondary: 215 25% 20%; /* #333333 */
   --secondary-foreground: 0 0% 98%; /* #FAFAFA */
@@ -235,7 +235,7 @@ button, a, [role="button"] {
 }
 
 .cast-scroll::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.3);
+  background: hsl(348deg 100% 50%);
   border-radius: 3px;
 }
 
