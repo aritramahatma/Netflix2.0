@@ -102,7 +102,7 @@ export function HeroSection({ movies, movie, onWatchNow, onAddToList }: HeroSect
       )}
       
       {/* Content */}
-      <div className="absolute inset-0 z-20 flex items-center">
+      <div className="absolute inset-0 z-20 flex items-end pb-16 sm:pb-20">
         <div className="container mx-auto px-4 sm:px-6">
           <div className="max-w-xl sm:max-w-2xl">
             <h1 className={`text-3xl sm:text-5xl md:text-7xl font-bold mb-3 sm:mb-4 animate-fadeIn transition-all duration-700 ease-in-out ${isTransitioning ? 'opacity-60 transform translate-y-2' : 'opacity-100 transform translate-y-0'}`}>
