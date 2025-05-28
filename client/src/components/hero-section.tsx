@@ -19,7 +19,7 @@ export function HeroSection({ movies, movie, onWatchNow, onAddToList }: HeroSect
   const moviesList = movies && movies.length > 0 ? movies : (movie ? [movie] : []);
   const currentMovie = moviesList[currentMovieIndex];
 
-  // Auto-rotate images every 3 seconds
+  // Auto-rotate images every 5 seconds
   useEffect(() => {
     if (moviesList.length <= 1) return;
 
@@ -30,8 +30,8 @@ export function HeroSection({ movies, movie, onWatchNow, onAddToList }: HeroSect
           prevIndex === moviesList.length - 1 ? 0 : prevIndex + 1
         );
         setIsTransitioning(false);
-      }, 150);
-    }, 3000);
+      }, 300);
+    }, 5000);
 
     return () => clearInterval(interval);
   }, [moviesList.length]);
@@ -78,11 +78,11 @@ export function HeroSection({ movies, movie, onWatchNow, onAddToList }: HeroSect
       <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent z-10"></div>
       
       {/* Backdrop image with transition */}
-      <div className={`w-full h-full transition-all duration-300 ${isTransitioning ? 'opacity-80 scale-105' : 'opacity-100 scale-100'}`}>
+      <div className={`w-full h-full transition-all duration-500 ease-in-out ${isTransitioning ? 'opacity-70 scale-105' : 'opacity-100 scale-100'}`}>
         <img
           src={getMovieBackdropUrl(currentMovie.backdrop_path)}
           alt={currentMovie.title}
-          className="w-full h-full object-cover object-center"
+          className="w-full h-full object-cover object-center transition-all duration-500 ease-in-out"
           loading="eager"
         />
       </div>
@@ -105,18 +105,18 @@ export function HeroSection({ movies, movie, onWatchNow, onAddToList }: HeroSect
       <div className="absolute inset-0 z-20 flex items-center">
         <div className="container mx-auto px-4 sm:px-6">
           <div className="max-w-xl sm:max-w-2xl">
-            <h1 className={`text-3xl sm:text-5xl md:text-7xl font-bold mb-3 sm:mb-4 animate-fadeIn transition-all duration-500 ${isTransitioning ? 'opacity-80' : 'opacity-100'}`}>
+            <h1 className={`text-3xl sm:text-5xl md:text-7xl font-bold mb-3 sm:mb-4 animate-fadeIn transition-all duration-700 ease-in-out ${isTransitioning ? 'opacity-60 transform translate-y-2' : 'opacity-100 transform translate-y-0'}`}>
               {currentMovie.title}
             </h1>
             
             {currentMovie.overview && (
-              <p className={`text-sm sm:text-lg md:text-xl text-muted-foreground mb-4 sm:mb-6 leading-relaxed animate-fadeIn line-clamp-3 sm:line-clamp-none transition-all duration-500 ${isTransitioning ? 'opacity-80' : 'opacity-100'}`}>
+              <p className={`text-sm sm:text-lg md:text-xl text-muted-foreground mb-4 sm:mb-6 leading-relaxed animate-fadeIn line-clamp-3 sm:line-clamp-none transition-all duration-700 ease-in-out ${isTransitioning ? 'opacity-60 transform translate-y-2' : 'opacity-100 transform translate-y-0'}`}>
                 {currentMovie.overview}
               </p>
             )}
             
             {/* Movie details */}
-            <div className={`flex items-center flex-wrap gap-2 sm:gap-4 mb-6 sm:mb-8 animate-fadeIn text-sm sm:text-base transition-all duration-500 ${isTransitioning ? 'opacity-80' : 'opacity-100'}`}>
+            <div className={`flex items-center flex-wrap gap-2 sm:gap-4 mb-6 sm:mb-8 animate-fadeIn text-sm sm:text-base transition-all duration-700 ease-in-out ${isTransitioning ? 'opacity-60 transform translate-y-2' : 'opacity-100 transform translate-y-0'}`}></div>
               {currentMovie.vote_average > 0 && (
                 <div className="flex items-center space-x-1 sm:space-x-2">
                   <Star className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-400 fill-current" />
