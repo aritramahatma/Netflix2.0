@@ -67,11 +67,11 @@ export function InfiniteMovieSection({
         {icon}
         {title}
       </h2>
-      
+
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3 md:gap-4">
-        {movies.map((movie) => (
+        {movies.map((movie, index) => (
           <MovieCard
-            key={movie.id}
+            key={`grid-${movie.id}-${Math.floor(index / 20)}-${index % 20}`}
             movie={movie}
             onClick={() => onMovieClick(movie)}
           />

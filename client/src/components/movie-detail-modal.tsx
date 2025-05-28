@@ -42,8 +42,8 @@ export function MovieDetailModal({ movieId, isOpen, onClose, onMovieClick }: Mov
 
   return (
     <div className="fixed inset-0 bg-black/90 z-50 overflow-y-auto">
-      <div className="min-h-screen flex items-center justify-center p-4">
-        <div className="bg-card rounded-lg max-w-4xl w-full max-h-[90vh] overflow-hidden">
+      <div className="min-h-screen flex items-center justify-center p-2 sm:p-4">
+        <div className="bg-card rounded-lg max-w-4xl w-full max-h-[95vh] sm:max-h-[90vh] overflow-hidden">
           {isMovieLoading || !movie ? (
             <div className="h-96 flex items-center justify-center">
               <LoadingIndicator text="Loading movie details..." />
@@ -62,16 +62,16 @@ export function MovieDetailModal({ movieId, isOpen, onClose, onMovieClick }: Mov
                   variant="ghost"
                   size="icon"
                   onClick={onClose}
-                  className="absolute top-4 right-4 text-white bg-black/50 hover:bg-black/70 rounded-full"
+                  className="absolute top-2 right-2 sm:top-4 sm:right-4 text-white bg-black/50 hover:bg-black/70 rounded-full w-8 h-8 sm:w-10 sm:h-10"
                 >
-                  <X className="w-5 h-5" />
+                  <X className="w-4 h-4 sm:w-5 sm:h-5" />
                 </Button>
               </div>
 
               {/* Modal Content */}
-              <ScrollArea className="h-[calc(90vh-16rem)]">
-                <div className="p-6">
-                  <div className="grid md:grid-cols-3 gap-6">
+              <ScrollArea className="h-[calc(95vh-12rem)] sm:h-[calc(90vh-16rem)]">
+                <div className="p-3 sm:p-6">
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
                     {/* Movie Poster */}
                     <div className="md:col-span-1">
                       <img
@@ -83,9 +83,9 @@ export function MovieDetailModal({ movieId, isOpen, onClose, onMovieClick }: Mov
 
                     {/* Movie Info */}
                     <div className="md:col-span-2">
-                      <h1 className="text-3xl font-bold mb-2">{movie.title}</h1>
+                      <h1 className="text-xl sm:text-2xl md:text-3xl font-bold mb-2">{movie.title}</h1>
                       
-                      <div className="flex items-center space-x-4 mb-4">
+                      <div className="flex flex-wrap items-center gap-2 sm:gap-4 mb-4">
                         {movie.vote_average > 0 && (
                           <div className="flex items-center space-x-1">
                             <Star className="w-5 h-5 text-yellow-400 fill-current" />
@@ -129,15 +129,15 @@ export function MovieDetailModal({ movieId, isOpen, onClose, onMovieClick }: Mov
                       )}
 
                       {/* Action Buttons */}
-                      <div className="flex space-x-4 mb-6">
+                      <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-6">
                         <Button 
-                          className="bg-netflix-red hover:bg-red-700 font-semibold"
+                          className="bg-netflix-red hover:bg-red-700 font-semibold text-sm sm:text-base"
                           onClick={handleWatchOnTelegram}
                         >
                           <Play className="w-4 h-4 mr-2" />
                           Watch on Telegram
                         </Button>
-                        <Button variant="secondary" className="font-semibold">
+                        <Button variant="secondary" className="font-semibold text-sm sm:text-base">
                           <Plus className="w-4 h-4 mr-2" />
                           Add to List
                         </Button>
@@ -146,17 +146,17 @@ export function MovieDetailModal({ movieId, isOpen, onClose, onMovieClick }: Mov
                       {/* Cast Section */}
                       {movie.credits && movie.credits.cast.length > 0 && (
                         <div className="mb-6">
-                          <h3 className="text-xl font-semibold mb-3">Cast</h3>
-                          <div className="flex space-x-4 overflow-x-auto horizontal-scroll">
+                          <h3 className="text-lg sm:text-xl font-semibold mb-3">Cast</h3>
+                          <div className="flex space-x-3 sm:space-x-4 overflow-x-auto horizontal-scroll">
                             {movie.credits.cast.slice(0, 10).map((actor: TMDBCastMember) => (
-                              <div key={actor.id} className="flex-none text-center">
+                              <div key={actor.id} className="flex-none text-center min-w-[60px] sm:min-w-[80px]">
                                 <img
                                   src={getActorProfileUrl(actor.profile_path)}
                                   alt={actor.name}
-                                  className="w-16 h-16 rounded-full object-cover mb-2"
+                                  className="w-12 h-12 sm:w-16 sm:h-16 rounded-full object-cover mb-2"
                                 />
-                                <p className="text-sm font-medium">{actor.name}</p>
-                                <p className="text-xs text-muted-foreground">{actor.character}</p>
+                                <p className="text-xs sm:text-sm font-medium line-clamp-2">{actor.name}</p>
+                                <p className="text-xs text-muted-foreground line-clamp-1">{actor.character}</p>
                               </div>
                             ))}
                           </div>
@@ -166,8 +166,8 @@ export function MovieDetailModal({ movieId, isOpen, onClose, onMovieClick }: Mov
                       {/* Similar Movies */}
                       {similarMovies && similarMovies.results.length > 0 && (
                         <div>
-                          <h3 className="text-xl font-semibold mb-3">Similar Movies</h3>
-                          <div className="grid grid-cols-3 gap-3">
+                          <h3 className="text-lg sm:text-xl font-semibold mb-3">Similar Movies</h3>
+                          <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3">
                             {similarMovies.results.slice(0, 6).map((similarMovie) => (
                               <div
                                 key={similarMovie.id}
@@ -177,9 +177,9 @@ export function MovieDetailModal({ movieId, isOpen, onClose, onMovieClick }: Mov
                                 <img
                                   src={getMoviePosterUrl(similarMovie.poster_path)}
                                   alt={similarMovie.title}
-                                  className="w-full h-32 object-cover rounded group-hover:scale-105 transition-transform"
+                                  className="w-full h-24 sm:h-32 object-cover rounded group-hover:scale-105 transition-transform"
                                 />
-                                <p className="text-sm mt-1 group-hover:text-netflix-red transition-colors line-clamp-2">
+                                <p className="text-xs sm:text-sm mt-1 group-hover:text-netflix-red transition-colors line-clamp-2">
                                   {similarMovie.title}
                                 </p>
                               </div>
