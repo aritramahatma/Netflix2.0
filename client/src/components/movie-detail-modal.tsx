@@ -181,7 +181,7 @@ export function MovieDetailModal({ movieId, isOpen, onClose, onMovieClick }: Mov
                                   alt={similarMovie.title}
                                   className="w-full h-24 sm:h-32 object-cover rounded group-hover:scale-105 transition-fast"
                                 />
-                                <p className="text-xs sm:text-sm mt-1 group-hover:text-netflix-red transition-fast line-clamp-2">
+                                <p className="text-xs sm:text-sm mt-1 transition-fast line-clamp-2">
                                   {similarMovie.title}
                                 </p>
                               </div>

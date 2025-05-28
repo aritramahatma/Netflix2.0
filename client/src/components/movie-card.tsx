@@ -46,7 +46,7 @@ export function MovieCard({ movie, onClick, className = "" }: MovieCardProps) {
       </div>
       
       {/* Movie info */}
-      <h3 className="mt-2 font-medium text-white group-hover:text-netflix-red transition-colors text-sm line-clamp-2">
+      <h3 className="mt-2 font-medium text-white transition-colors text-sm line-clamp-2">
         {movie.title}
       </h3>
       {movie.release_date && (
@@ -100,7 +100,7 @@ export function HorizontalMovieCard({ movie, onClick }: HorizontalMovieCardProps
         )}
       </div>
       {/* Movie info */}
-      <h3 className="mt-3 font-medium text-white group-hover:text-netflix-red transition-colors line-clamp-2">
+      <h3 className="mt-3 font-medium text-white transition-colors line-clamp-2">
         {movie.title}
       </h3>
       {movie.release_date && (
