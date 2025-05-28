@@ -116,7 +116,7 @@ export function HeroSection({ movies, movie, onWatchNow, onAddToList }: HeroSect
             )}
             
             {/* Movie details */}
-            <div className={`flex items-center flex-wrap gap-2 sm:gap-4 mb-6 sm:mb-8 animate-fadeIn text-sm sm:text-base transition-all duration-700 ease-in-out ${isTransitioning ? 'opacity-60 transform translate-y-2' : 'opacity-100 transform translate-y-0'}`}></div>
+            <div className={`flex items-center flex-wrap gap-2 sm:gap-4 mb-6 sm:mb-8 animate-fadeIn text-sm sm:text-base transition-all duration-700 ease-in-out ${isTransitioning ? 'opacity-60 transform translate-y-2' : 'opacity-100 transform translate-y-0'}`}>
               {currentMovie.vote_average > 0 && (
                 <div className="flex items-center space-x-1 sm:space-x-2">
                   <Star className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-400 fill-current" />
