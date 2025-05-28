@@ -224,6 +224,25 @@ button, a, [role="button"] {
   transition: all 0.2s ease-in-out;
 }
 
+/* Custom scrollbar for cast section */
+.cast-scroll::-webkit-scrollbar {
+  height: 6px;
+}
+
+.cast-scroll::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 3px;
+}
+
+.cast-scroll::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 3px;
+}
+
+.cast-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+
 /* Custom gradient overlays */
 .gradient-overlay-t {
   background: linear-gradient(to top, hsl(var(--background)), transparent);
