@@ -1,6 +1,6 @@
 import { TMDBMovie } from "@/types/movie";
 import { getMovieBackdropUrl, formatYear, formatRating, getTelegramBotUrl } from "@/lib/tmdb";
-import { Star, Play, Plus } from "lucide-react";
+import { Star, Play, Plus, ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
 
@@ -72,14 +72,56 @@ export function HeroSection({ movies, movie, onWatchNow, onAddToList }: HeroSect
         />
       </div>
       
+      {/* Navigation arrows */}
+      {moviesList.length > 1 && (
+        <>
+          <button
+            onClick={() => {
+              setIsTransitioning(true);
+              setTimeout(() => {
+                setCurrentMovieIndex((prevIndex) => 
+                  prevIndex === 0 ? moviesList.length - 1 : prevIndex - 1
+                );
+                setIsTransitioning(false);
+              }, 300);
+            }}
+            className="absolute left-4 top-1/2 transform -translate-y-1/2 z-30 bg-black/50 hover:bg-black/70 text-white rounded-full p-2 opacity-0 hover:opacity-100 transition-opacity"
+          >
+            <ChevronLeft className="w-6 h-6" />
+          </button>
+          
+          <button
+            onClick={() => {
+              setIsTransitioning(true);
+              setTimeout(() => {
+                setCurrentMovieIndex((prevIndex) => 
+                  prevIndex === moviesList.length - 1 ? 0 : prevIndex + 1
+                );
+                setIsTransitioning(false);
+              }, 300);
+            }}
+            className="absolute right-4 top-1/2 transform -translate-y-1/2 z-30 bg-black/50 hover:bg-black/70 text-white rounded-full p-2 opacity-0 hover:opacity-100 transition-opacity"
+          >
+            <ChevronRight className="w-6 h-6" />
+          </button>
+        </>
+      )}
+
       {/* Movie indicators */}
       {moviesList.length > 1 && (
         <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 z-30 flex space-x-2">
           {moviesList.map((_, index) => (
-            <div
+            <button
               key={index}
-              className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                index === currentMovieIndex ? 'bg-white' : 'bg-white/40'
+              onClick={() => {
+                setIsTransitioning(true);
+                setTimeout(() => {
+                  setCurrentMovieIndex(index);
+                  setIsTransitioning(false);
+                }, 300);
+              }}
+              className={`w-3 h-3 rounded-full transition-all duration-300 hover:scale-110 ${
+                index === currentMovieIndex ? 'bg-white' : 'bg-white/40 hover:bg-white/60'
               }`}
             />
           ))}
