@@ -78,7 +78,7 @@ export function HeroSection({ movies, movie, onWatchNow, onAddToList }: HeroSect
       <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent z-10"></div>
       
       {/* Backdrop image with transition */}
-      <div className={`w-full h-full transition-all duration-500 ease-in-out ${isTransitioning ? 'opacity-70 scale-105' : 'opacity-100 scale-100'}`}>
+      <div className={`w-full h-full transition-all duration-500 ease-in-out ${isTransitioning ? 'opacity-70 transform translate-x-4' : 'opacity-100 transform translate-x-0'}`}>
         <img
           src={getMovieBackdropUrl(currentMovie.backdrop_path)}
           alt={currentMovie.title}
