@@ -201,6 +201,21 @@ export default function Home() {
               isLoadingMore={isFetchingNextPopular}
             />
           </div>
+
+          {/* Genre Movies Section */}
+          {selectedGenreId && allGenreMovies.length > 0 && (
+            <div id="genre-section">
+              <InfiniteMovieSection
+                title="Genre Movies"
+                icon={<Tags className="w-6 h-6 text-netflix-red mr-3" />}
+                movies={allGenreMovies}
+                onMovieClick={handleMovieClick}
+                onLoadMore={() => fetchNextGenreMovies()}
+                hasNextPage={hasNextGenrePage}
+                isLoadingMore={isFetchingNextGenrePage}
+              />
+            </div>
+          )}
         </section>
       </main>
 
