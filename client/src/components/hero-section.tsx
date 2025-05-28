@@ -19,22 +19,7 @@ export function HeroSection({ movies, movie, onWatchNow, onAddToList }: HeroSect
   const moviesList = movies && movies.length > 0 ? movies : (movie ? [movie] : []);
   const currentMovie = moviesList[currentMovieIndex];
 
-  // Auto-rotate images every 5 seconds
-  useEffect(() => {
-    if (moviesList.length <= 1) return;
-
-    const interval = setInterval(() => {
-      setIsTransitioning(true);
-      setTimeout(() => {
-        setCurrentMovieIndex((prevIndex) => 
-          prevIndex === moviesList.length - 1 ? 0 : prevIndex + 1
-        );
-        setIsTransitioning(false);
-      }, 300);
-    }, 5000);
-
-    return () => clearInterval(interval);
-  }, [moviesList.length]);
+  // Removed auto-scroll - users can navigate manually
 
   if (!currentMovie) {
     return (
