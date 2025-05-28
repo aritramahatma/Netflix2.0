@@ -96,7 +96,6 @@ export default function GenrePage() {
         onMenuClick={() => setIsMenuOpen(true)}
         isSearchOpen={isSearchOpen || isMobileSearchOpen}
       />
-
       {/* Main Content */}
       <main className="pt-20">
         {/* Page Header */}
@@ -108,8 +107,7 @@ export default function GenrePage() {
               </Button>
             </Link>
             <div>
-              <h1 className="text-4xl md:text-5xl font-bold flex items-center">
-                <Tags className="w-8 h-8 text-netflix-red mr-4" />
+              <h1 className="text-[36px] font-bold">
                 {currentGenre?.name || 'Genre'} Movies
               </h1>
               <p className="text-muted-foreground mt-2">
@@ -131,27 +129,23 @@ export default function GenrePage() {
           />
         </section>
       </main>
-
       {/* Search Overlays */}
       <SearchOverlay
         isOpen={isSearchOpen}
         onClose={() => setIsSearchOpen(false)}
         onMovieClick={handleMovieClick}
       />
-
       <MobileSearchOverlay
         isOpen={isMobileSearchOpen}
         onClose={() => setIsMobileSearchOpen(false)}
         onMovieClick={handleMovieClick}
       />
-
       {/* Side Menu */}
       <SideMenu
         isOpen={isMenuOpen}
         onClose={() => setIsMenuOpen(false)}
         onNavigate={handleNavigation}
       />
-
       {/* Movie Detail Modal */}
       <MovieDetailModal
         movieId={selectedMovieId}
@@ -159,7 +153,6 @@ export default function GenrePage() {
         onClose={handleCloseModal}
         onMovieClick={handleMovieClick}
       />
-
       {/* Back to Top Button */}
       {showBackToTop && (
         <Button
