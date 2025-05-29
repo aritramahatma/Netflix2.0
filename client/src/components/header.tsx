@@ -24,13 +24,11 @@ export function Header({ onSearchClick, onMobileSearchClick, onMenuClick, isSear
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        isScrolled 
-          ? 'bg-background/98 backdrop-blur-xl shadow-2xl border-b border-border/20' 
-          : 'bg-background/95 backdrop-blur-lg'
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled ? 'bg-background' : 'bg-background/95 backdrop-blur-sm'
       }`}
     >
-      <div className="container mx-auto px-6 py-5 flex items-center justify-between">
+      <div className="container mx-auto px-4 py-4 flex items-center justify-between">
         {/* Logo */}
         <div
           className={`flex items-center space-x-2 transition-opacity duration-300 ${
@@ -43,18 +41,17 @@ export function Header({ onSearchClick, onMobileSearchClick, onMenuClick, isSear
         </div>
 
         {/* Desktop Search Bar */}
-        <div className="hidden md:flex flex-1 max-w-lg mx-10">
+        <div className="hidden md:flex flex-1 max-w-md mx-8">
           <div className="relative w-full group">
-            <div className="absolute inset-0 bg-gradient-to-r from-netflix-red/20 via-transparent to-netflix-red/10 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
             <Input
               type="text"
               placeholder="Search for movies, shows, and more..."
               onClick={onSearchClick}
-              className="relative w-full bg-gradient-to-r from-muted/90 to-muted/70 border-2 border-border/30 hover:border-netflix-red/60 focus:border-netflix-red pl-14 pr-6 py-4 text-base rounded-full cursor-pointer transition-all duration-400 shadow-xl hover:shadow-2xl backdrop-blur-lg group-hover:scale-[1.02] hover:shadow-netflix-red/10"
+              className="w-full bg-gradient-to-r from-muted to-muted/80 border-2 border-transparent hover:border-netflix-red/50 focus:border-netflix-red pl-12 pr-4 py-3 rounded-full cursor-pointer transition-all duration-300 shadow-lg hover:shadow-xl backdrop-blur-sm"
               readOnly
             />
-            <Search className="absolute left-5 top-1/2 transform -translate-y-1/2 text-muted-foreground group-hover:text-netflix-red w-5 h-5 transition-all duration-300 group-hover:scale-110" />
-            <div className="absolute inset-0 rounded-full bg-gradient-to-r from-netflix-red/10 via-transparent to-netflix-red/5 opacity-0 group-hover:opacity-100 transition-opacity duration-400 pointer-events-none"></div>
+            <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-muted-foreground group-hover:text-netflix-red w-5 h-5 transition-colors duration-300" />
+            <div className="absolute inset-0 rounded-full bg-gradient-to-r from-netflix-red/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
           </div>
         </div>
 
@@ -63,12 +60,12 @@ export function Header({ onSearchClick, onMobileSearchClick, onMenuClick, isSear
           {/* Mobile Search Icon */}
           <Button
             variant="ghost"
-            className={`md:hidden p-4 transition-all duration-300 hover:bg-netflix-red/20 active:bg-netflix-red/30 hover:scale-110 active:scale-95 rounded-2xl ${
+            className={`md:hidden p-3 transition-opacity duration-300 hover:bg-netflix-red/20 active:bg-netflix-red/30 ${
               isSearchOpen ? 'opacity-0' : 'opacity-100'
             }`}
             onClick={onMobileSearchClick}
           >
-            <Search className="w-7 h-7 text-muted-foreground hover:text-netflix-red transition-colors duration-300" />
+            <Search className="w-7 h-7" />
           </Button>
 
           {/* Menu Button */}

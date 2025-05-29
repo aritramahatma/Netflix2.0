@@ -62,45 +62,39 @@ export function SearchOverlay({ isOpen, onClose, onMovieClick }: SearchOverlayPr
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black/95 backdrop-blur-xl z-50 overflow-y-auto animate-in fade-in-0 duration-300">
+    <div className="fixed inset-0 bg-black/90 backdrop-blur-sm z-50 overflow-y-auto">
       <div className="min-h-screen">
         {/* Search header */}
-        <div className="sticky top-0 bg-gradient-to-b from-background via-background/98 to-background/95 backdrop-blur-xl border-b border-border/50 p-6 shadow-2xl">
+        <div className="sticky top-0 bg-background/95 backdrop-blur-sm border-b border-border p-4">
           <div className="container mx-auto">
-            <div className="relative max-w-3xl mx-auto">
-              <div className="absolute inset-0 bg-gradient-to-r from-netflix-red/5 to-transparent rounded-2xl blur-xl"></div>
-              <div className="relative">
-                <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-netflix-red w-6 h-6 animate-pulse" />
-                <Input
-                  type="text"
-                  placeholder="Discover amazing movies..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="pl-14 pr-14 py-4 text-lg bg-gradient-to-r from-muted/80 to-muted/60 border-2 border-border/50 hover:border-netflix-red/50 focus:border-netflix-red rounded-2xl backdrop-blur-sm shadow-lg transition-all duration-300 hover:shadow-xl focus:shadow-2xl"
-                  autoFocus
-                />
-                <button
-                  onClick={handleClose}
-                  className="absolute right-4 top-1/2 transform -translate-y-1/2 text-muted-foreground hover:text-netflix-red transition-all duration-200 hover:scale-110 p-1 rounded-full hover:bg-netflix-red/10"
-                >
-                  <X className="w-6 h-6" />
-                </button>
-              </div>
+            <div className="relative max-w-2xl mx-auto">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-5 h-5" />
+              <Input
+                type="text"
+                placeholder="Search movies..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="pl-12 pr-12 py-3 text-lg bg-muted border-border focus:border-netflix-red"
+                autoFocus
+              />
+              <button
+                onClick={handleClose}
+                className="absolute right-3 top-1/2 transform -translate-y-1/2 text-muted-foreground hover:text-foreground"
+              >
+                <X className="w-5 h-5" />
+              </button>
             </div>
           </div>
         </div>
 
         {/* Search results */}
-        <div className="container mx-auto px-6 py-12">
+        <div className="container mx-auto px-4 py-8">
           {debouncedQuery.length === 0 ? (
-            <div className="text-center py-24 animate-in fade-in-0 slide-in-from-bottom-4 duration-500">
-              <div className="relative mb-8">
-                <div className="absolute inset-0 bg-netflix-red/10 rounded-full blur-2xl w-32 h-32 mx-auto"></div>
-                <Search className="w-20 h-20 text-netflix-red mx-auto relative animate-bounce" />
-              </div>
-              <h3 className="text-2xl font-bold mb-3 bg-gradient-to-r from-foreground to-muted-foreground bg-clip-text text-transparent">Discover Movies</h3>
-              <p className="text-muted-foreground text-lg max-w-md mx-auto leading-relaxed">
-                Start typing to explore thousands of amazing movies
+            <div className="text-center py-16">
+              <Search className="w-16 h-16 text-muted-foreground mx-auto mb-4" />
+              <h3 className="text-xl font-semibold mb-2">Search for Movies</h3>
+              <p className="text-muted-foreground">
+                Enter a movie title to start searching
               </p>
             </div>
           ) : isLoading ? (
@@ -192,43 +186,39 @@ export function MobileSearchOverlay({ isOpen, onClose, onMovieClick }: MobileSea
   if (!isOpen) return null;
 
   return (
-    <div className="md:hidden fixed inset-0 bg-black/98 backdrop-blur-2xl z-[70] animate-in fade-in-0 slide-in-from-top-4 duration-300">
-      <div className="p-6 pt-6">
+    <div className="md:hidden fixed inset-0 bg-black/95 backdrop-blur-md z-[70]">
+      <div className="p-4 pt-4">
         <div className="relative">
-          <div className="absolute inset-0 bg-gradient-to-r from-netflix-red/10 via-transparent to-netflix-red/5 rounded-3xl blur-xl"></div>
-          <div className="relative">
-            <Search className="absolute left-5 top-1/2 transform -translate-y-1/2 text-netflix-red w-6 h-6" />
-            <Input
-              type="text"
-              placeholder="Search amazing movies..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="pl-14 pr-16 py-5 text-lg bg-gradient-to-r from-muted/90 to-muted/70 border-2 border-border/30 focus:border-netflix-red rounded-3xl shadow-2xl backdrop-blur-sm transition-all duration-300 focus:shadow-netflix-red/20"
-              autoFocus
-            />
-            <button
-              onClick={handleClose}
-              className="absolute right-5 top-1/2 transform -translate-y-1/2 text-muted-foreground hover:text-netflix-red active:text-netflix-red transition-all duration-200 hover:scale-110 p-2 rounded-full hover:bg-netflix-red/10"
-            >
-              <X className="w-6 h-6" />
-            </button>
-          </div>
+          <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-muted-foreground w-5 h-5" />
+          <Input
+            type="text"
+            placeholder="Search for movies..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="pl-12 pr-14 py-4 text-lg bg-gradient-to-r from-muted to-muted/80 border-2 border-transparent focus:border-netflix-red rounded-full shadow-lg"
+            autoFocus
+          />
+          <button
+            onClick={handleClose}
+            className="absolute right-4 top-1/2 transform -translate-y-1/2 text-muted-foreground hover:text-netflix-red active:text-netflix-red transition-colors p-1"
+          >
+            <X className="w-5 h-5" />
+          </button>
         </div>
 
         {/* Quick results */}
         {debouncedQuery.length > 0 && (
-          <div className="mt-8 space-y-3 animate-in fade-in-0 slide-in-from-bottom-4 duration-500">
+          <div className="mt-4 space-y-2">
             {isLoading ? (
-              <div className="text-center py-8">
-                <LoadingIndicator text="Discovering movies..." />
+              <div className="text-center py-4">
+                <LoadingIndicator text="Searching..." />
               </div>
             ) : topResults.length > 0 ? (
-              topResults.map((movie, index) => (
+              topResults.map((movie) => (
                 <div
                   key={movie.id}
                   onClick={() => handleMovieClick(movie)}
-                  className="flex items-center space-x-5 p-5 bg-gradient-to-r from-muted/90 to-muted/70 rounded-2xl cursor-pointer hover:from-muted hover:to-muted/90 active:scale-[0.98] transition-all duration-300 backdrop-blur-lg border border-border/30 hover:border-netflix-red/30 shadow-lg hover:shadow-xl group"
-                  style={{ animationDelay: `${index * 50}ms` }}
+                  className="flex items-center space-x-4 p-4 bg-muted/80 rounded-xl cursor-pointer hover:bg-muted active:bg-muted/60 transition-all duration-200 backdrop-blur-sm border border-border/50"
                 >
                   <img
                     src={`https://image.tmdb.org/t/p/w92${movie.poster_path}`}
