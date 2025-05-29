@@ -187,7 +187,7 @@ export function MobileSearchOverlay({ isOpen, onClose, onMovieClick }: MobileSea
 
   return (
     <div className="md:hidden fixed inset-0 bg-black/95 backdrop-blur-md z-[70]">
-      <div className="p-4 pt-32">
+      <div className="p-4 pt-4">
         <div className="relative">
           <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-muted-foreground w-5 h-5" />
           <Input
