@@ -11,7 +11,7 @@ import {
   getTelegramBotUrl 
 } from "@/lib/tmdb";
 import { useMovieDetails, useSimilarMovies } from "@/hooks/use-tmdb";
-import { Star, Play, Plus, ArrowLeft } from "lucide-react";
+import { Star, Play, Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ScrollArea } from "@/components/ui/scroll-area";
@@ -101,18 +101,6 @@ export default function MovieDetail() {
       />
 
       <div className="pt-20">
-        {/* Back button */}
-        <div className="p-4">
-          <Button
-            variant="ghost"
-            onClick={() => setLocation("/")}
-            className="flex items-center space-x-2 text-white hover:text-netflix-red"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            <span>Back to Home</span>
-          </Button>
-        </div>
-
         {/* Movie Details */}
         <div className="relative">
           {/* Backdrop */}
