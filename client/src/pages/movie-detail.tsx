@@ -19,11 +19,17 @@ import { LoadingIndicator } from "@/components/loading-indicator";
 import { MovieCard } from "@/components/movie-card";
 import { Header } from "@/components/header";
 import { useLocation } from "wouter";
+import { useState } from "react";
+import { SideMenu } from "@/components/side-menu";
+import { SearchOverlay } from "@/components/search-overlay";
 
 export default function MovieDetail() {
   const params = useParams();
   const [, setLocation] = useLocation();
   const movieId = params.id ? parseInt(params.id) : null;
+  
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const { data: movieDetails, isLoading: detailsLoading } = useMovieDetails(movieId);
   const { data: similarMovies, isLoading: similarLoading } = useSimilarMovies(movieId);
@@ -91,13 +97,32 @@ export default function MovieDetail() {
     window.open(telegramUrl, '_blank');
   };
 
+  const handleNavigation = (section: string, genreId?: number) => {
+    setIsMenuOpen(false);
+    
+    switch (section) {
+      case 'home':
+        setLocation('/');
+        break;
+      case 'trending':
+      case 'movies':
+      case 'watchlist':
+      case 'settings':
+      case 'help':
+        setLocation('/');
+        break;
+      default:
+        console.log('Navigate to:', section);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Header
-        onSearchClick={() => {}}
-        onMobileSearchClick={() => {}}
-        onMenuClick={() => {}}
-        isSearchOpen={false}
+        onSearchClick={() => setIsSearchOpen(true)}
+        onMobileSearchClick={() => setIsSearchOpen(true)}
+        onMenuClick={() => setIsMenuOpen(true)}
+        isSearchOpen={isSearchOpen}
       />
 
       <div className="pt-20">
@@ -232,6 +257,20 @@ export default function MovieDetail() {
           </div>
         </div>
       </div>
+
+      {/* Search Overlay */}
+      <SearchOverlay
+        isOpen={isSearchOpen}
+        onClose={() => setIsSearchOpen(false)}
+        onMovieClick={handleMovieClick}
+      />
+
+      {/* Side Menu */}
+      <SideMenu
+        isOpen={isMenuOpen}
+        onClose={() => setIsMenuOpen(false)}
+        onNavigate={handleNavigation}
+      />
     </div>
   );
 }
