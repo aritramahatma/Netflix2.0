@@ -6,6 +6,7 @@ import { useSearchMovies } from "@/hooks/use-tmdb";
 import { debounce } from "@/lib/tmdb";
 import { MovieCard } from "./movie-card";
 import { LoadingIndicator } from "./loading-indicator";
+import { useLocation } from "wouter";
 
 interface SearchOverlayProps {
   isOpen: boolean;
@@ -14,6 +15,7 @@ interface SearchOverlayProps {
 }
 
 export function SearchOverlay({ isOpen, onClose, onMovieClick }: SearchOverlayProps) {
+  const [, setLocation] = useLocation();
   const [searchQuery, setSearchQuery] = useState("");
   const [debouncedQuery, setDebouncedQuery] = useState("");
 
@@ -43,8 +45,8 @@ export function SearchOverlay({ isOpen, onClose, onMovieClick }: SearchOverlayPr
   };
 
   const handleMovieClick = (movie: TMDBMovie) => {
-    onMovieClick(movie);
-    handleClose();
+    onClose();
+    setLocation(`/movie/${movie.id}`);
   };
 
   useEffect(() => {
@@ -113,7 +115,7 @@ export function SearchOverlay({ isOpen, onClose, onMovieClick }: SearchOverlayPr
               <h3 className="text-xl font-semibold mb-6">
                 Search Results for "{debouncedQuery}"
               </h3>
-              
+
               <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
                 {allMovies.map((movie) => (
                   <MovieCard
@@ -153,6 +155,7 @@ interface MobileSearchProps {
 }
 
 export function MobileSearchOverlay({ isOpen, onClose, onMovieClick }: MobileSearchProps) {
+  const [, setLocation] = useLocation();
   const [searchQuery, setSearchQuery] = useState("");
   const [debouncedQuery, setDebouncedQuery] = useState("");
 
@@ -179,8 +182,8 @@ export function MobileSearchOverlay({ isOpen, onClose, onMovieClick }: MobileSea
   };
 
   const handleMovieClick = (movie: TMDBMovie) => {
-    onMovieClick(movie);
-    handleClose();
+    onClose();
+    setLocation(`/movie/${movie.id}`);
   };
 
   if (!isOpen) return null;
@@ -217,8 +220,8 @@ export function MobileSearchOverlay({ isOpen, onClose, onMovieClick }: MobileSea
               topResults.map((movie) => (
                 <div
                   key={movie.id}
+                  className="flex p-3 hover:bg-muted/50 rounded cursor-pointer"
                   onClick={() => handleMovieClick(movie)}
-                  className="flex items-center space-x-4 p-4 bg-muted/80 rounded-xl cursor-pointer hover:bg-muted active:bg-muted/60 transition-all duration-200 backdrop-blur-sm border border-border/50"
                 >
                   <img
                     src={`https://image.tmdb.org/t/p/w92${movie.poster_path}`}

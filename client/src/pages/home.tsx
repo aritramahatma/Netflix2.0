@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useLocation } from "wouter";
 import { TMDBMovie } from "@/types/movie";
 import { 
   useTrendingMovies, 
@@ -14,15 +15,14 @@ import { MovieSection } from "@/components/movie-section";
 import { InfiniteMovieSection } from "@/components/infinite-movie-section";
 import { SearchOverlay, MobileSearchOverlay } from "@/components/search-overlay";
 import { SideMenu } from "@/components/side-menu";
-import { MovieDetailModal } from "@/components/movie-detail-modal";
 import { Button } from "@/components/ui/button";
 import { ChevronUp, TrendingUp, Star, Clock, Film, Tags } from "lucide-react";
 
 export default function Home() {
+  const [, setLocation] = useLocation();
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isMobileSearchOpen, setIsMobileSearchOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [selectedMovieId, setSelectedMovieId] = useState<number | null>(null);
   const [showBackToTop, setShowBackToTop] = useState(false);
   const [selectedGenreId, setSelectedGenreId] = useState<number | null>(null);
 
@@ -71,11 +71,7 @@ export default function Home() {
   const allGenreMovies = genreMoviesData?.pages.flatMap(page => page.results) || [];
 
   const handleMovieClick = (movie: TMDBMovie) => {
-    setSelectedMovieId(movie.id);
-  };
-
-  const handleCloseModal = () => {
-    setSelectedMovieId(null);
+    setLocation(`/movie/${movie.id}`);
   };
 
   const handleNavigation = (section: string, genreId?: number) => {
@@ -254,13 +250,7 @@ export default function Home() {
         onNavigate={handleNavigation}
       />
 
-      {/* Movie Detail Modal */}
-      <MovieDetailModal
-        movieId={selectedMovieId}
-        isOpen={selectedMovieId !== null}
-        onClose={handleCloseModal}
-        onMovieClick={handleMovieClick}
-      />
+      
 
       {/* Back to Top Button */}
       {showBackToTop && (
