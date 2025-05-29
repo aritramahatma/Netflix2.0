@@ -367,6 +367,30 @@ img {
   background: hsl(var(--primary) / 0.8);
 }
 
+/* Custom scrollbar for movie detail similar movies section */
+.movie-similar-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: hsl(var(--primary)) transparent;
+}
+
+.movie-similar-scroll::-webkit-scrollbar {
+  height: 8px;
+}
+
+.movie-similar-scroll::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+.movie-similar-scroll::-webkit-scrollbar-thumb {
+  background: hsl(var(--primary));
+  border-radius: 4px;
+}
+
+.movie-similar-scroll::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--primary) / 0.8);
+}
+
 /* Custom gradient overlays */
 .gradient-overlay-t {
   background: linear-gradient(to top, hsl(var(--background)), transparent);

@@ -240,7 +240,7 @@ export default function MovieDetail() {
             {similarMovies && similarMovies.results.length > 0 && (
               <div className="mt-12 mb-8">
                 <h2 className="text-2xl font-bold text-white mb-6">Similar Movies</h2>
-                <ScrollArea className="w-full">
+                <div className="w-full overflow-x-auto movie-similar-scroll">
                   <div className="flex space-x-4 pb-4">
                     {similarMovies.results.slice(0, 10).map((movie) => (
                       <div key={movie.id} className="flex-none w-48">
@@ -251,7 +251,7 @@ export default function MovieDetail() {
                       </div>
                     ))}
                   </div>
-                </ScrollArea>
+                </div>
               </div>
             )}
           </div>
