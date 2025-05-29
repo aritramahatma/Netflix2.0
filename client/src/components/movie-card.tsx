@@ -11,19 +11,10 @@ interface MovieCardProps {
 export function MovieCard({ movie, onClick, className = "" }: MovieCardProps) {
   return (
     <div 
-      className={`group cursor-pointer movie-card ${className}`}
+      className={`group cursor-pointer relative movie-card ${className}`}
       onClick={onClick}
     >
-      <div className="relative overflow-hidden rounded-lg">
-        <img
-          src={getMoviePosterUrl(movie.poster_path)}
-          alt={movie.title}
-          className="w-full h-64 md:h-72 object-cover"
-          loading="lazy"
-        />
-        
-        {/* Touch-optimized overlay for mobile */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-0 group-hover:opacity-100 group-active:opacity-100 transition-all duration-300 flex items-center justify-center touch-manipulation">
+      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-0 group-hover:opacity-100 group-active:opacity-100 transition-all duration-300 flex items-center justify-center touch-manipulation">
           <div className="text-center transform translate-y-4 group-hover:translate-y-0 group-active:translate-y-0 transition-transform duration-300">
             <div className="bg-primary hover:bg-primary/90 active:bg-primary/80 rounded-full p-3 mb-3 mx-auto inline-flex items-center justify-center shadow-xl transform hover:scale-110 active:scale-95 transition-all duration-200 cursor-pointer">
               <Play className="w-6 h-6 text-white fill-white" />
@@ -31,7 +22,14 @@ export function MovieCard({ movie, onClick, className = "" }: MovieCardProps) {
             <p className="text-white font-semibold text-xs tracking-wide drop-shadow-lg">WATCH NOW</p>
           </div>
         </div>
-        
+      <div className="relative overflow-hidden rounded-lg">
+        <img
+          src={getMoviePosterUrl(movie.poster_path)}
+          alt={movie.title}
+          className="w-full h-64 md:h-72 object-cover"
+          loading="lazy"
+        />
+
         {/* Rating badge */}
         {movie.vote_average > 0 && (
           <div className="absolute top-2 right-2 bg-black/80 px-2 py-1 rounded-md">
@@ -44,7 +42,7 @@ export function MovieCard({ movie, onClick, className = "" }: MovieCardProps) {
           </div>
         )}
       </div>
-      
+
       {/* Movie info */}
       <h3 className="mt-2 font-medium text-white transition-colors text-sm line-clamp-2">
         {movie.title}
@@ -76,7 +74,7 @@ export function HorizontalMovieCard({ movie, onClick }: HorizontalMovieCardProps
           className="w-full h-72 object-cover"
           loading="lazy"
         />
-        
+
         {/* Hover overlay */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center">
           <div className="text-center transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 text-[#db143c]">
@@ -86,7 +84,7 @@ export function HorizontalMovieCard({ movie, onClick }: HorizontalMovieCardProps
             <p className="text-white font-semibold text-xs tracking-wide">WATCH NOW</p>
           </div>
         </div>
-        
+
         {/* Rating badge */}
         {movie.vote_average > 0 && (
           <div className="absolute top-2 right-2 bg-black/80 px-2 py-1 rounded-md">
