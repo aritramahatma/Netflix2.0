@@ -214,7 +214,7 @@ export default function MovieDetail() {
             {movieDetails.credits?.cast && movieDetails.credits.cast.length > 0 && (
               <div className="mt-12">
                 <h2 className="text-2xl font-bold text-white mb-6">Cast</h2>
-                <ScrollArea className="w-full">
+                <div className="w-full overflow-x-auto movie-cast-scroll">
                   <div className="flex space-x-4 pb-4">
                     {movieDetails.credits.cast.slice(0, 10).map((actor) => (
                       <div key={actor.id} className="flex-none w-32 text-center">
@@ -232,7 +232,7 @@ export default function MovieDetail() {
                       </div>
                     ))}
                   </div>
-                </ScrollArea>
+                </div>
               </div>
             )}
 

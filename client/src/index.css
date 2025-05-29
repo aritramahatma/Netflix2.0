@@ -335,12 +335,36 @@ img {
 }
 
 .cast-scroll::-webkit-scrollbar-thumb {
-  background: hsl(348deg 100% 50%);
+  background: hsl(var(--primary));
   border-radius: 3px;
 }
 
 .cast-scroll::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.5);
+  background: hsl(var(--primary) / 0.8);
+}
+
+/* Custom scrollbar for movie detail cast section */
+.movie-cast-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: hsl(var(--primary)) transparent;
+}
+
+.movie-cast-scroll::-webkit-scrollbar {
+  height: 8px;
+}
+
+.movie-cast-scroll::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+.movie-cast-scroll::-webkit-scrollbar-thumb {
+  background: hsl(var(--primary));
+  border-radius: 4px;
+}
+
+.movie-cast-scroll::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--primary) / 0.8);
 }
 
 /* Custom gradient overlays */
